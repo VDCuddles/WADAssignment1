@@ -233,9 +233,12 @@
 C:\Temp\WADAssignment1\src\WADAssignment1\Program.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Startup.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\AccountController.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\BagsController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\HomeController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\ManageController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\ApplicationDbContext.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Data\DbInitialiser.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Data\OrderContext.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\00000000000000_CreateIdentitySchema.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\ApplicationDbContextModelSnapshot.cs
