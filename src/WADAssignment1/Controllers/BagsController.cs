@@ -25,25 +25,27 @@ namespace WADAssignment1.Controllers
             return View(await _context.Bags.ToListAsync());
         }
 
-        // GET: Bags/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: Bags/Details/5
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var student = await _context.Bags
+			.Include(s => s.SupplierID)
+			.AsNoTracking()
+			.SingleOrDefaultAsync(m => m.ID == id);
+			if (student == null)
+			{
+				return NotFound();
+			}
+			return View(student);
+		}
 
-            var bag = await _context.Bags.SingleOrDefaultAsync(m => m.ID == id);
-            if (bag == null)
-            {
-                return NotFound();
-            }
 
-            return View(bag);
-        }
-
-        // GET: Bags/Create
-        public IActionResult Create()
+		// GET: Bags/Create
+		public IActionResult Create()
         {
             return View();
         }
@@ -54,69 +56,29 @@ namespace WADAssignment1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,CategoryName,Description,Image,Name,Price,SupplierID")] Bag bag)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(bag);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(bag);
-        }
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					_context.Add(bag);
+					await _context.SaveChangesAsync();
+					return RedirectToAction("Index");
+				}
+			}
+			catch (DbUpdateException /* ex */)
+			{
+				//Log the error (uncomment ex variable name and write a log.
+				ModelState.AddModelError("", "Unable to save changes. " +
+				"Try again, and if the problem persists " +
+				"see your system administrator.");
+			}
+			return View(bag);
+		}
 
-        // GET: Bags/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var bag = await _context.Bags.SingleOrDefaultAsync(m => m.ID == id);
-            if (bag == null)
-            {
-                return NotFound();
-            }
-            return View(bag);
-        }
-
-        // POST: Bags/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CategoryName,Description,Image,Name,Price,SupplierID")] Bag bag)
-        {
-            if (id != bag.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(bag);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BagExists(bag.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            return View(bag);
-        }
-
-        // GET: Bags/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Bags/Edit/5
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -128,12 +90,69 @@ namespace WADAssignment1.Controllers
             {
                 return NotFound();
             }
-
             return View(bag);
         }
 
-        // POST: Bags/Delete/5
-        [HttpPost, ActionName("Delete")]
+		// POST: Bags/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost, ActionName("Edit")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> EditPost(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var bagToUpdate = await _context.Bags.SingleOrDefaultAsync(s => s.ID == id);
+			if (await TryUpdateModelAsync<Bag>(
+			bagToUpdate,
+			"",
+			s => s.SupplierID, s => s.Name, s => s.CategoryName, s => s.Description, s => s.Image, s => s.Price))
+			{
+				try
+				{
+					await _context.SaveChangesAsync();
+					return RedirectToAction("Index");
+				}
+				catch (DbUpdateException /* ex */)
+				{
+					//Log the error (uncomment ex variable name and write a log.)
+					ModelState.AddModelError("", "Unable to save changes. " +
+					"Try again, and if the problem persists, " +
+					"see your system administrator.");
+				}
+			}
+			return View(bagToUpdate);
+		}
+
+
+		// GET: Bags/Delete/5
+		public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var bag = await _context.Bags
+			.AsNoTracking()
+			.SingleOrDefaultAsync(m => m.ID == id);
+			if (bag == null)
+			{
+				return NotFound();
+			}
+			if (saveChangesError.GetValueOrDefault())
+			{
+				ViewData["ErrorMessage"] =
+				"Delete failed. Try again, and if the problem persists " +
+				"see your system administrator.";
+			}
+			return View(bag);
+		}
+
+
+		// POST: Bags/Delete/5
+		[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

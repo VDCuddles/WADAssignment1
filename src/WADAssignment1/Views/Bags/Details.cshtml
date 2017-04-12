@@ -43,9 +43,20 @@
         <dt>
             @Html.DisplayNameFor(model => model.SupplierID)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SupplierID)
-        </dd>
+        @*<dd> (below not necessary; although may be worth finding a way to translate supplier name here)
+            <table class="table">
+                <tr>
+                    <th>Supplier</th>
+                </tr>
+                @foreach (var item in Model.SupplierID)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplier.Name)
+                        </td>
+                    </tr>}
+            </table>        
+        </dd>*@
     </dl>
 </div>
 <div>
