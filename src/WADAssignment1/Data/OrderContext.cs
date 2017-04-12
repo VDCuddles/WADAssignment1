@@ -1,4 +1,4 @@
-﻿using ContosoUniversity.Models;
+﻿using WADAssignment1.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace WADAssignment1.Data

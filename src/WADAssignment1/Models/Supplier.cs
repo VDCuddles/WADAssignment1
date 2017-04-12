@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace ContosoUniversity.Models
+namespace WADAssignment1.Models
 {
 	public class Supplier
 	{
