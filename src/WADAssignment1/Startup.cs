@@ -13,6 +13,8 @@ using WADAssignment1.Data;
 using WADAssignment1.Models;
 using WADAssignment1.Services;
 
+using Microsoft.AspNetCore.Identity;
+
 namespace WADAssignment1
 {
     public class Startup
@@ -72,8 +74,8 @@ namespace WADAssignment1
         }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-		OrderContext context)
+		public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+		OrderContext context, IServiceProvider serviceProvider)
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -105,9 +107,44 @@ namespace WADAssignment1
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+			await CreateRoles(serviceProvider);
 
 			DbInitialiser.Initialise(context);
 
 		}
+		private async Task CreateRoles(IServiceProvider serviceProvider)
+		{
+			var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+			var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+			string[] roleNames = { "Admin", "Member" };
+			IdentityResult roleResult;
+			foreach (var roleName in roleNames)
+			{
+				var roleExist = await RoleManager.RoleExistsAsync(roleName);
+				if (!roleExist)
+				{
+					roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+				}
+			}
+			var poweruser = new ApplicationUser
+			{
+				UserName = Configuration.GetSection("UserSettings")["UserEmail"],
+				Email = Configuration.GetSection("UserSettings")["UserEmail"],
+				EmailConfirmed = true,
+			};
+			string UserPassword = Configuration.GetSection("UserSettings")["UserPassword"];
+			var _user = await UserManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["UserEmail"]);
+			if (_user == null)
+			{
+				poweruser.EmailConfirmed = true;
+				var createPowerUser = await UserManager.CreateAsync(poweruser, UserPassword);
+				if (createPowerUser.Succeeded)
+				{
+					//here we tie the new user to the "Admin" role 
+					await UserManager.AddToRoleAsync(poweruser, "Admin");
+				}
+			}
+		}
+
 	}
 }
