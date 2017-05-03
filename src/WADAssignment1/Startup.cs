@@ -45,16 +45,24 @@ namespace WADAssignment1
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
+			// Added in Week 1 Practical 
 			services.AddDbContext<OrderContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+			services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+			{
+				config.SignIn.RequireConfirmedEmail = true;
+			})
+			.AddEntityFrameworkStores<ApplicationDbContext>()
+			 .AddDefaultTokenProviders();
 
-			services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+
+			//services.AddIdentity<ApplicationUser, IdentityRole>()
+   //             .AddEntityFrameworkStores<ApplicationDbContext>()
+   //             .AddDefaultTokenProviders();
 
             services.AddMvc();
 

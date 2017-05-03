@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-WADAssignment1-8a332852-b2f8-4635-b580-c0727c923dff",
 
   "dependencies": {
@@ -41,10 +41,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "MailKit": "1.16.0"
   },
 
   "tools": {
