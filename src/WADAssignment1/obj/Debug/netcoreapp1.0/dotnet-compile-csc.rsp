@@ -237,6 +237,8 @@
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\OrderContext.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\00000000000000_CreateIdentitySchema.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"
+"C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\20170503065012_Address.cs"
+"C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\20170503065012_Address.Designer.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\ApplicationDbContextModelSnapshot.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Models\ApplicationUser.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Models\Bag.cs"
