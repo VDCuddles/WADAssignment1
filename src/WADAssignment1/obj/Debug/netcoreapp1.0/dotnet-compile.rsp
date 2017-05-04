@@ -238,6 +238,7 @@
 C:\Temp\WADAssignment1\src\WADAssignment1\Program.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Startup.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\AccountController.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\AdminApplicationUsersController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\BagsController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\HomeController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\ManageController.cs
@@ -248,6 +249,8 @@ C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\00000000000000_CreateI
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\20170503065012_Address.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\20170503065012_Address.Designer.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\20170504030521_Enabled.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\20170504030521_Enabled.Designer.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Models\ApplicationUser.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Models\Bag.cs

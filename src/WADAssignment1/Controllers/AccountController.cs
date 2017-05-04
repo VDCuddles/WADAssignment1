@@ -61,6 +61,12 @@ namespace WADAssignment1.Controllers
 				var user = await _userManager.FindByEmailAsync(model.Email);
 				if (user != null)
 				{
+					if (user.Enabled == false)
+					{
+						ModelState.AddModelError(string.Empty, "Your Account is currently Disabled, please consult the Administrator.");
+						return View(model);
+					}
+
 					if (!await _userManager.IsEmailConfirmedAsync(user))
 					{
 						ModelState.AddModelError(string.Empty,
@@ -117,7 +123,7 @@ namespace WADAssignment1.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, Enabled = true };
                 var result = await _userManager.CreateAsync(user, model.Password);
 				await _userManager.AddToRoleAsync(user, "Member");
 				if (result.Succeeded)

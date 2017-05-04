@@ -75,7 +75,7 @@ namespace WADAssignment1
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-		OrderContext context, IServiceProvider serviceProvider)
+		OrderContext context, IServiceProvider serviceProvider, ApplicationDbContext apContext, UserManager<ApplicationUser> userManager)
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -111,6 +111,18 @@ namespace WADAssignment1
 
 			DbInitialiser.Initialise(context);
 
+			//======================
+			foreach (ApplicationUser user in apContext.Users.ToList())
+			{
+				int count = userManager.GetRolesAsync(user).Result.ToList().Count;
+				if (count < 1)
+				{
+					await userManager.AddToRoleAsync(user, "Member");
+				}
+			}
+			//======================
+
+
 		}
 		private async Task CreateRoles(IServiceProvider serviceProvider)
 		{
@@ -131,6 +143,7 @@ namespace WADAssignment1
 				UserName = Configuration.GetSection("UserSettings")["UserEmail"],
 				Email = Configuration.GetSection("UserSettings")["UserEmail"],
 				EmailConfirmed = true,
+				Enabled = true
 			};
 			string UserPassword = Configuration.GetSection("UserSettings")["UserPassword"];
 			var _user = await UserManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["UserEmail"]);
