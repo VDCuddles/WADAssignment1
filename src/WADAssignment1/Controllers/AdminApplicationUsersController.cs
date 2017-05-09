@@ -40,6 +40,23 @@ namespace WADAssignment1.Controllers
 			return users;
 		}
 
+		public async Task<IActionResult> EnableDisable(string id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			IEnumerable<ApplicationUser> members = ReturnAllMembers().Result;
+			ApplicationUser member = (ApplicationUser)members.Single(u => u.Id == id);
+			if (member == null)
+			{
+				return NotFound();
+			}
+			member.Enabled = !member.Enabled;
+			_context.Update(member);
+			await _context.SaveChangesAsync();
+			return RedirectToAction("Index");
+		}
 
 		// GET: AdminApplicationUsers/Details/5
 		//public async Task<IActionResult> Details(string? id)
