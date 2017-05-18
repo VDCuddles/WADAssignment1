@@ -10,6 +10,41 @@
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
+        <label asp-for="FirstName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="HomePhone" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="HomePhone" class="form-control" />
+            <span asp-validation-for="HomePhone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="WorkPhone" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="WorkPhone" class="form-control" />
+            <span asp-validation-for="WorkPhone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="MobilePhone" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MobilePhone" class="form-control" />
+            <span asp-validation-for="MobilePhone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
             <input asp-for="Email" class="form-control" />

@@ -8,8 +8,8 @@ using WADAssignment1.Data;
 namespace WADAssignment1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170504030521_Enabled")]
-    partial class Enabled
+    [Migration("20170517235843_NewFields")]
+    partial class NewFields
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,9 +142,17 @@ namespace WADAssignment1.Data.Migrations
 
                     b.Property<bool>("Enabled");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("HomePhone");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("MobilePhone");
 
                     b.Property<string>("NormalizedEmail")
                         .HasAnnotation("MaxLength", 256);
@@ -164,6 +172,8 @@ namespace WADAssignment1.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
+
+                    b.Property<string>("WorkPhone");
 
                     b.HasKey("Id");
 

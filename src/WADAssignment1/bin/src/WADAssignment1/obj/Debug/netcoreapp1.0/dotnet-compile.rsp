@@ -1,5 +1,5 @@
---temp-output:C:\Temp\WADAssignment1\src\WADAssignment1\obj\Debug\netcoreapp1.0\
---out:C:\Temp\WADAssignment1\src\WADAssignment1\bin\Debug\netcoreapp1.0\WADAssignment1.dll
+--temp-output:C:\Temp\WADAssignment1\src\WADAssignment1\bin\src\WADAssignment1\obj\Debug\netcoreapp1.0\
+--out:C:\Temp\WADAssignment1\src\WADAssignment1\bin\src\WADAssignment1\bin\Debug\netcoreapp1.0\WADAssignment1.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -234,7 +234,7 @@
 --reference:C:\Users\·Aquila\.nuget\packages\System.Threading.Timer\4.3.0\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\·Aquila\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\·Aquila\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"C:\Temp\WADAssignment1\src\WADAssignment1\obj\Debug\netcoreapp1.0\WADAssignment1dotnet-compile.deps.json",WADAssignment1.deps.json
+--resource:"C:\Temp\WADAssignment1\src\WADAssignment1\bin\src\WADAssignment1\obj\Debug\netcoreapp1.0\WADAssignment1dotnet-compile.deps.json",WADAssignment1.deps.json
 C:\Temp\WADAssignment1\src\WADAssignment1\Program.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Startup.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\AccountController.cs

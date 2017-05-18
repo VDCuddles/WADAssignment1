@@ -69,6 +69,56 @@
         </dd>
         <dt>Address:</dt>
         <dd>
+            @if (Model.FirstName != null)
+            {
+
+                <p>@Model.FirstName</p>}
+            else
+            {
+                <p>No First Name Provided!</p>}
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @if (Model.LastName != null)
+            {
+
+                <p>@Model.LastName</p>}
+            else
+            {
+                <p>No Last Name Provided!</p>}
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @if (Model.HomePhone != null)
+            {
+
+                <p>@Model.HomePhone</p>}
+            else
+            {
+                <p>No Home Phone Provided!</p>}
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @if (Model.WorkPhone != null)
+            {
+
+                <p>@Model.WorkPhone</p>}
+            else
+            {
+                <p>No Work Phone Provided!</p>}
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @if (Model.MobilePhone != null)
+            {
+
+                <p>@Model.MobilePhone</p>}
+            else
+            {
+                <p>No Mobile Phone Provided!</p>}
+        </dd>
+        <dt>Address:</dt>
+        <dd>
             @if (Model.Address != null)
             {
 

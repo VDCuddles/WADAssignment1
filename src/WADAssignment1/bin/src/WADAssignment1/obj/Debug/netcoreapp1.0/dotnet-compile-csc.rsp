@@ -7,8 +7,8 @@
 -debug:full
 -nostdlib
 -nologo
-"C:\Temp\WADAssignment1\src\WADAssignment1\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"C:\Temp\WADAssignment1\src\WADAssignment1\bin\Debug\netcoreapp1.0\WADAssignment1.dll"
+"C:\Temp\WADAssignment1\src\WADAssignment1\bin\src\WADAssignment1\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"C:\Temp\WADAssignment1\src\WADAssignment1\bin\src\WADAssignment1\bin\Debug\netcoreapp1.0\WADAssignment1.dll"
 -r:"C:\Users\·Aquila\.nuget\packages\MailKit\1.16.0\lib\netstandard1.3\MailKit.dll"
 -r:"C:\Users\·Aquila\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\·Aquila\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
@@ -230,7 +230,7 @@
 -r:"C:\Users\·Aquila\.nuget\packages\System.Threading.Timer\4.3.0\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\·Aquila\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\·Aquila\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"C:\Temp\WADAssignment1\src\WADAssignment1\obj\Debug\netcoreapp1.0\WADAssignment1dotnet-compile.deps.json",WADAssignment1.deps.json
+-resource:"C:\Temp\WADAssignment1\src\WADAssignment1\bin\src\WADAssignment1\obj\Debug\netcoreapp1.0\WADAssignment1dotnet-compile.deps.json",WADAssignment1.deps.json
 "C:\Temp\WADAssignment1\src\WADAssignment1\Program.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Startup.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\AccountController.cs"

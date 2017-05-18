@@ -123,7 +123,9 @@ namespace WADAssignment1.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, Enabled = true };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, FirstName = model.FirstName,
+					LastName = model.LastName, HomePhone = model.HomePhone, WorkPhone = model.WorkPhone, MobilePhone = model.MobilePhone,
+					Enabled = true };
                 var result = await _userManager.CreateAsync(user, model.Password);
 				await _userManager.AddToRoleAsync(user, "Member");
 				if (result.Succeeded)

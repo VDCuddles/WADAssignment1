@@ -11,5 +11,10 @@ namespace WADAssignment1.Models
     {
 		public bool Enabled { get; set; }
 		public String Address { get; set; }
+		public String FirstName { get; set; }
+		public String LastName { get; set; }
+		public String HomePhone { get; set; }
+		public String WorkPhone { get; set; }
+		public String MobilePhone { get; set; }
 	}
 }

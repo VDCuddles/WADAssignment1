@@ -57,11 +57,16 @@ namespace WADAssignment1.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = await _userManager.HasPasswordAsync(user),
-                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                //PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-							Address = user.Address
+														FirstName = user.FirstName,
+														LastName = user.LastName,
+														HomePhone = user.HomePhone,
+														WorkPhone = user.WorkPhone,
+														MobilePhone = user.MobilePhone,
+														Address = user.Address
 			};
             return View(model);
         }
