@@ -184,12 +184,17 @@ namespace WADAssignment1.Controllers
             }
 
 			var order = await _context.NewOrders.Include(i => i.User).AsNoTracking().SingleOrDefaultAsync(m => m.ID == id);
+
 			if (order == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+			var details = _context.OrderDetails.Where(detail => detail.NewOrder.ID == order.ID).Include(detail => detail.Bag).ToList();
+
+			order.OrderDetails = details;
+
+			return View(order);
         }
 
         // POST: NewOrders/Delete/5

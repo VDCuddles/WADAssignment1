@@ -19,7 +19,8 @@ namespace WADAssignment1.Data
 			modelBuilder.Entity<Customer>().ToTable("Customer");
 			modelBuilder.Entity<Order>().ToTable("Order");
 			modelBuilder.Entity<Supplier>().ToTable("Supplier");
-		}
+		}
+
 	}
 }
 
