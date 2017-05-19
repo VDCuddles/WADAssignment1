@@ -186,6 +186,102 @@ namespace WADAssignment1.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("WADAssignment1.Models.Bag", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryName");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int>("SupplierID");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Bag");
+                });
+
+            modelBuilder.Entity("WADAssignment1.Models.CartItem", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("BagID");
+
+                    b.Property<string>("CartID");
+
+                    b.Property<int>("Count");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BagID");
+
+                    b.ToTable("CartItem");
+                });
+
+            modelBuilder.Entity("WADAssignment1.Models.NewOrder", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("PostalCode");
+
+                    b.Property<string>("State");
+
+                    b.Property<decimal>("Total");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("NewOrder");
+                });
+
+            modelBuilder.Entity("WADAssignment1.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("BagID");
+
+                    b.Property<int?>("NewOrderID");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<decimal>("UnitPrice");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("BagID");
+
+                    b.HasIndex("NewOrderID");
+
+                    b.ToTable("OrderDetail");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -220,6 +316,32 @@ namespace WADAssignment1.Data.Migrations
                     b.HasOne("WADAssignment1.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WADAssignment1.Models.CartItem", b =>
+                {
+                    b.HasOne("WADAssignment1.Models.Bag", "Bag")
+                        .WithMany()
+                        .HasForeignKey("BagID");
+                });
+
+            modelBuilder.Entity("WADAssignment1.Models.NewOrder", b =>
+                {
+                    b.HasOne("WADAssignment1.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("WADAssignment1.Models.OrderDetail", b =>
+                {
+                    b.HasOne("WADAssignment1.Models.Bag", "Bag")
+                        .WithMany()
+                        .HasForeignKey("BagID");
+
+                    b.HasOne("WADAssignment1.Models.NewOrder", "NewOrder")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("NewOrderID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
