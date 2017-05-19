@@ -15,6 +15,7 @@ namespace WADAssignment1.Data
         {
         }
 		public DbSet<Bag> Bags { get; set; }
+		public DbSet<Supplier> Suppliers { get; set; }
 		public DbSet<CartItem> CartItems { get; set; }
 		public DbSet<NewOrder> NewOrders { get; set; }
 		public DbSet<OrderDetail> OrderDetails { get; set; }
@@ -29,6 +30,7 @@ namespace WADAssignment1.Data
 			// For example, you can rename the ASP.NET Identity table names and more.
 			// Add your customizations after calling base.OnModelCreating(builder);
 			builder.Entity<Bag>().ToTable("Bag");
+			builder.Entity<Supplier>().ToTable("Supplier");
 			builder.Entity<CartItem>().ToTable("CartItem");
 			builder.Entity<NewOrder>().ToTable("NewOrder");
 			builder.Entity<OrderDetail>().ToTable("OrderDetail");

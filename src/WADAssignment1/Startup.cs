@@ -71,12 +71,22 @@ namespace WADAssignment1
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-        }
+			services.AddSession(options =>
+			{
+				// Set a short timeout for easy testing.
+				options.IdleTimeout = TimeSpan.FromMinutes(5);
+				options.CookieHttpOnly = true;
+			});
+
+		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
 		OrderContext context, IServiceProvider serviceProvider, ApplicationDbContext apContext, UserManager<ApplicationUser> userManager)
 		{
+
+			app.UseSession();
+
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -109,7 +119,7 @@ namespace WADAssignment1
             });
 			await CreateRoles(serviceProvider);
 
-			DbInitialiser.Initialise(context);
+			DbInitialiser.Initialise(apContext);
 
 			//======================
 			foreach (ApplicationUser user in apContext.Users.ToList())

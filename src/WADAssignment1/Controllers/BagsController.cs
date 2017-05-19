@@ -12,9 +12,9 @@ namespace WADAssignment1.Controllers
 {
     public class BagsController : Controller
     {
-        private readonly OrderContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public BagsController(OrderContext context)
+        public BagsController(ApplicationDbContext context)
         {
             _context = context;    
         }
