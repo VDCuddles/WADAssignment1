@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WADAssignment1.Data;
 using WADAssignment1.Models;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace WADAssignment1.Controllers
 {
-    public class ShoppingCartController : Controller
+	[AllowAnonymous]
+	[Authorize(Roles = "Member")]
+	public class ShoppingCartController : Controller
     {
 		ApplicationDbContext _context;
 
@@ -36,7 +38,7 @@ namespace WADAssignment1.Controllers
 			var cart = ShoppingCart.GetCart(this.HttpContext);
 			cart.AddToCart(addedTutorial, _context);
 			// Go back to the main store page for more shopping
-			return RedirectToAction("Index", "Bags");
+			return RedirectToAction("Index", "MemberBags");
 		}
 
 		public ActionResult RemoveFromCart(int id)

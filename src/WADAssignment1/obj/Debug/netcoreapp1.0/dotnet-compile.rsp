@@ -243,6 +243,7 @@ C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\AdminApplicationUsersContr
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\BagsController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\HomeController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\ManageController.cs
+C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\MemberBagsController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\NewOrdersController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\ShoppingCartController.cs
 C:\Temp\WADAssignment1\src\WADAssignment1\Data\ApplicationDbContext.cs

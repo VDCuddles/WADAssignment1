@@ -9,10 +9,12 @@ using WADAssignment1.Data;
 using WADAssignment1.Models;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WADAssignment1.Controllers
 {
-    public class NewOrdersController : Controller
+	[Authorize(Roles = "Admin,Member")]
+	public class NewOrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
 		private UserManager<ApplicationUser> _userManager;
@@ -23,31 +25,33 @@ namespace WADAssignment1.Controllers
 			_userManager = userManager;
 		}
 
-        // GET: NewOrders
-        public async Task<IActionResult> Index()
+		// GET: NewOrders
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Index()
         {
 			return View(await _context.NewOrders.Include(i => i.User).AsNoTracking().ToListAsync());
 		}
 
-        //// GET: NewOrders/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+		//// GET: NewOrders/Details/5
+		//public async Task<IActionResult> Details(int? id)
+		//{
+		//    if (id == null)
+		//    {
+		//        return NotFound();
+		//    }
 
-        //    var newOrder = await _context.NewOrders.SingleOrDefaultAsync(m => m.ID == id);
-        //    if (newOrder == null)
-        //    {
-        //        return NotFound();
-        //    }
+		//    var newOrder = await _context.NewOrders.SingleOrDefaultAsync(m => m.ID == id);
+		//    if (newOrder == null)
+		//    {
+		//        return NotFound();
+		//    }
 
-        //    return View(newOrder);
-        //}
+		//    return View(newOrder);
+		//}
 
-        // GET: NewOrders/Create
-        public IActionResult Create()
+		// GET: NewOrders/Create
+		[Authorize(Roles = "Member")]
+		public IActionResult Create()
         {
             return View();
         }
@@ -57,6 +61,7 @@ namespace WADAssignment1.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Member")]
 		public async Task<IActionResult> Create([Bind("City,Country,FirstName,LastName,Phone,PostalCode,State")] NewOrder order)
 		{
 			ApplicationUser user = await _userManager.GetUserAsync(User);
@@ -176,6 +181,7 @@ namespace WADAssignment1.Controllers
 		//      }
 
 		// GET: NewOrders/Delete/5
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -200,7 +206,8 @@ namespace WADAssignment1.Controllers
         // POST: NewOrders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var newOrder = await _context.NewOrders.SingleOrDefaultAsync(m => m.ID == id);
             _context.NewOrders.Remove(newOrder);

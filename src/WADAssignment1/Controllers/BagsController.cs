@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WADAssignment1.Data;
 using WADAssignment1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WADAssignment1.Controllers
 {
-    public class BagsController : Controller
+	[Authorize(Roles = "Admin")]
+	public class BagsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
@@ -33,7 +35,7 @@ namespace WADAssignment1.Controllers
 				return NotFound();
 			}
 			var student = await _context.Bags
-			.Include(s => s.SupplierID)
+			//.Include(s => s.SupplierID)
 			.AsNoTracking()
 			.SingleOrDefaultAsync(m => m.ID == id);
 			if (student == null)
@@ -158,7 +160,17 @@ namespace WADAssignment1.Controllers
         {
             var bag = await _context.Bags.SingleOrDefaultAsync(m => m.ID == id);
             _context.Bags.Remove(bag);
-            await _context.SaveChangesAsync();
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException s)
+			{
+				TempData["BagUsed"] = "The Bag being deleted has been used in previous orders.Delete those orders before trying again.";
+				return RedirectToAction("Delete");
+			}
+
+			await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
