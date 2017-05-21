@@ -23,14 +23,42 @@ namespace WADAssignment1.Controllers
             _context = context;    
         }
 
-        // GET: MemberBags
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Bags.ToListAsync());
-        }
+		// GET: MemberBags
+		public async Task<IActionResult> Index(string sortOrder, string searchString)
+		{
+			ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
+			ViewData["CategoryNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "CategoryName" : "";
+			ViewData["PriceSortParm"] = sortOrder == "Price" ? "Price" : "Price";
+			ViewData["CurrentFilter"] = searchString;
+			var bags = from s in _context.Bags
+						   select s;
 
-        // GET: MemberBags/Details/5
-        public async Task<IActionResult> Details(int? id)
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				bags = bags.Where(s => s.Name.Contains(searchString)
+				|| s.CategoryName.Contains(searchString) || s.Description.Contains(searchString));
+			}
+
+			switch (sortOrder)
+			{
+				case "CategoryName":
+					bags = bags.OrderBy(s => s.CategoryName);
+					break;
+				case "Name":
+					bags = bags.OrderBy(s => s.Name);
+					break;
+				case "Price":
+					bags = bags.OrderBy(s => s.Price);
+					break;
+				default:
+					bags = bags.OrderBy(s => s.CategoryName);
+					break;
+			}
+			return View(await bags.AsNoTracking().ToListAsync());
+		}
+
+		// GET: MemberBags/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

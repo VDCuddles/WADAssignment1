@@ -28,11 +28,40 @@ namespace WADAssignment1.Controllers
 			_hostingEnv = hEnv;
 		}
 
-        // GET: Bags
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Bags.ToListAsync());
-        }
+		// GET: Bags
+		public async Task<IActionResult> Index(string sortOrder, string searchString)
+		{
+			ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
+			ViewData["CategoryNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "CategoryName" : "";
+			ViewData["PriceSortParm"] = sortOrder == "Price" ? "Price" : "Price";
+			ViewData["CurrentFilter"] = searchString;
+			var bags = from s in _context.Bags
+					   select s;
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				bags = bags.Where(s => s.Name.Contains(searchString)
+				|| s.CategoryName.Contains(searchString) || s.Description.Contains(searchString));
+			}
+
+			switch (sortOrder)
+			{
+				case "CategoryName":
+					bags = bags.OrderBy(s => s.CategoryName);
+					break;
+				case "Name":
+					bags = bags.OrderBy(s => s.Name);
+					break;
+				case "Price":
+					bags = bags.OrderBy(s => s.Price);
+					break;
+				default:
+					bags = bags.OrderBy(s => s.CategoryName);
+					break;
+			}
+			return View(await bags.AsNoTracking().ToListAsync());
+		}
+
 
 		// GET: Bags/Details/5
 		public async Task<IActionResult> Details(int? id)
@@ -41,15 +70,15 @@ namespace WADAssignment1.Controllers
 			{
 				return NotFound();
 			}
-			var student = await _context.Bags
+			var bag = await _context.Bags
 			//.Include(s => s.SupplierID)
 			.AsNoTracking()
 			.SingleOrDefaultAsync(m => m.ID == id);
-			if (student == null)
+			if (bag == null)
 			{
 				return NotFound();
 			}
-			return View(student);
+			return View(bag);
 		}
 
 
