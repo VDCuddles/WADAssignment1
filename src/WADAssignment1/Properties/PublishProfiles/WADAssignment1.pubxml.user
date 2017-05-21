@@ -833,7 +833,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2017 19:43:13</publishTime>
     </File>
     <File Include="Views/Bags/Create.cshtml">
-      <publishTime>05/21/2017 21:45:59</publishTime>
+      <publishTime>05/22/2017 05:58:08</publishTime>
     </File>
     <File Include="Views/Bags/Delete.cshtml">
       <publishTime>05/20/2017 12:43:32</publishTime>
@@ -899,13 +899,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2017 19:43:13</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/21/2017 22:12:25</publishTime>
+      <publishTime>05/22/2017 04:45:48</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/19/2017 19:43:13</publishTime>
     </File>
     <File Include="Views/Shared/_ValidationScriptsPartial.cshtml">
       <publishTime>05/19/2017 19:43:13</publishTime>
+    </File>
+    <File Include="Views/Suppliers/Create.cshtml">
+      <publishTime>05/22/2017 04:44:07</publishTime>
+    </File>
+    <File Include="Views/Suppliers/Delete.cshtml">
+      <publishTime>05/22/2017 04:44:08</publishTime>
+    </File>
+    <File Include="Views/Suppliers/Details.cshtml">
+      <publishTime>05/22/2017 05:40:45</publishTime>
+    </File>
+    <File Include="Views/Suppliers/Edit.cshtml">
+      <publishTime>05/22/2017 04:44:07</publishTime>
+    </File>
+    <File Include="Views/Suppliers/Index.cshtml">
+      <publishTime>05/22/2017 05:32:00</publishTime>
     </File>
     <File Include="Views/_ViewImports.cshtml">
       <publishTime>05/19/2017 19:43:13</publishTime>
@@ -914,25 +929,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2017 19:43:13</publishTime>
     </File>
     <File Include="WADAssignment1.deps.json">
-      <publishTime>05/22/2017 02:55:09</publishTime>
+      <publishTime>05/22/2017 06:11:44</publishTime>
     </File>
     <File Include="WADAssignment1.dll">
-      <publishTime>05/22/2017 02:55:01</publishTime>
+      <publishTime>05/22/2017 06:11:37</publishTime>
     </File>
     <File Include="WADAssignment1.pdb">
-      <publishTime>05/22/2017 02:55:01</publishTime>
+      <publishTime>05/22/2017 06:11:37</publishTime>
     </File>
     <File Include="WADAssignment1.runtimeconfig.json">
-      <publishTime>05/22/2017 02:55:09</publishTime>
+      <publishTime>05/22/2017 06:11:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>05/22/2017 02:55:11</publishTime>
+      <publishTime>05/22/2017 06:11:46</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>05/21/2017 21:34:18</publishTime>
     </File>
     <File Include="wwwroot/css/site.min.css">
-      <publishTime>05/22/2017 02:55:07</publishTime>
+      <publishTime>05/22/2017 06:11:42</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>05/19/2017 19:43:13</publishTime>

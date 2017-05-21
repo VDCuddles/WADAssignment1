@@ -243,6 +243,7 @@
 "C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\MemberBagsController.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\NewOrdersController.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\ShoppingCartController.cs"
+"C:\Temp\WADAssignment1\src\WADAssignment1\Controllers\SuppliersController.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\ApplicationDbContext.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\DbInitialiser.cs"
 "C:\Temp\WADAssignment1\src\WADAssignment1\Data\OrderContext.cs"
