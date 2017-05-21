@@ -8,6 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using WADAssignment1.Data;
 using WADAssignment1.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Http.Headers; //Week 6
+using Microsoft.AspNetCore.Hosting; //Week 6
+using Microsoft.AspNetCore.Http; //Week 6
+using System.IO; //Week 6
+
 
 namespace WADAssignment1.Controllers
 {
@@ -15,11 +20,13 @@ namespace WADAssignment1.Controllers
 	public class BagsController : Controller
     {
         private readonly ApplicationDbContext _context;
+		private readonly IHostingEnvironment _hostingEnv;
 
-        public BagsController(ApplicationDbContext context)
+		public BagsController(ApplicationDbContext context, IHostingEnvironment hEnv)
         {
-            _context = context;    
-        }
+            _context = context;
+			_hostingEnv = hEnv;
+		}
 
         // GET: Bags
         public async Task<IActionResult> Index()
@@ -57,8 +64,55 @@ namespace WADAssignment1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CategoryName,Description,Image,Name,Price,SupplierID")] Bag bag)
+		//      public async Task<IActionResult> Create([Bind("ID,CategoryName,Description,Image,Name,Price,SupplierID")] Bag bag)
+		//{
+		//	try
+		//	{
+		//		if (ModelState.IsValid)
+		//		{
+		//			_context.Add(bag);
+		//			await _context.SaveChangesAsync();
+		//			return RedirectToAction("Index");
+		//		}
+		//	}
+		//	catch (DbUpdateException /* ex */)
+		//	{
+		//		//Log the error (uncomment ex variable name and write a log.
+		//		ModelState.AddModelError("", "Unable to save changes. " +
+		//		"Try again, and if the problem persists " +
+		//		"see your system administrator.");
+		//	}
+		//	return View(bag);
+		//}
+
+		public async Task<IActionResult> Create([Bind("ID,CategoryName,Description,Image,Name,Price,SupplierID")]  Bag bag, IList<IFormFile> _files)
 		{
+			var relativeName = "";
+			var fileName = "";
+
+			if (_files.Count < 1)
+			{
+				relativeName = "/images/bags/default.jpg";
+			}
+			else
+			{
+				foreach (var file in _files)
+				{
+					fileName = ContentDispositionHeaderValue
+									  .Parse(file.ContentDisposition)
+									  .FileName
+									  .Trim('"');
+					//Path for localhost
+					relativeName = "/images/bags/" + fileName;
+					//+DateTime.Now.ToString("ddMMyyyy-HHmmssffffff")
+					using (FileStream fs = System.IO.File.Create(_hostingEnv.WebRootPath + relativeName))
+					{
+						await file.CopyToAsync(fs);
+						fs.Flush();
+					}
+				}
+			}
+			bag.Image = relativeName;
 			try
 			{
 				if (ModelState.IsValid)
@@ -71,12 +125,11 @@ namespace WADAssignment1.Controllers
 			catch (DbUpdateException /* ex */)
 			{
 				//Log the error (uncomment ex variable name and write a log.
-				ModelState.AddModelError("", "Unable to save changes. " +
-				"Try again, and if the problem persists " +
-				"see your system administrator.");
+				ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists " + "see your system administrator.");
 			}
 			return View(bag);
 		}
+
 
 
 		// GET: Bags/Edit/5
