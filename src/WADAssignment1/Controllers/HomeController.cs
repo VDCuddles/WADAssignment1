@@ -22,7 +22,7 @@ namespace WADAssignment1.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Please see the below information in order to contact us with regards to queries.";
 
             return View();
         }

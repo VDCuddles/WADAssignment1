@@ -25,33 +25,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-btn">
                     @*Quality
                     Bags*@
                     @*<img src ="~/images/logo5.png" alt="Quality Bags" >*@
-                    <img src='@Url.Content("~/images/logo5.png")' width="93" height="28" alt="logo5" />
+                    <img src='@Url.Content("~/images/logo5.png")' alt="logo5" style="display:block"/>
                     </img>
                 </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="About" asp-action="About">About</a></li>
+                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>*@
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     @*<li><a asp-area="" asp-controller="Bags" asp-action="Index">Men's Bags</a></li>
                     <li><a asp-area="" asp-controller="Bags" asp-action="Index">Women's Bags</a></li>
                     <li><a asp-area="" asp-controller="Bags" asp-action="Index">Children's Bags</a></li>*@
                     @if (User.IsInRole("Admin"))
                     {
-                        <li><a asp-area="" asp-controller="Bags" asp-action="Index">Men's Bags</a></li>
-                    <li><a asp-area="" asp-controller="Bags" asp-action="Index">Women's Bags</a></li>
-                    <li><a asp-area="" asp-controller="Bags" asp-action="Index">Children's Bags</a></li>}
+                        <li><a asp-area="" asp-controller="Bags" asp-action="Index">Browse</a></li>
+                    @*<li><a asp-area="" asp-controller="Bags" asp-action="Index">Women's Bags</a></li>
+                    <li><a asp-area="" asp-controller="Bags" asp-action="Index">Children's Bags</a></li>*@
+}
                     else
                     {
-                        <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Men's Bags</a></li>
-                    <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Women's Bags</a></li>
-                    <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Children's Bags</a></li>}
+                        <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Browse</a></li>
+                    @*<li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Women's Bags</a></li>
+                    <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Children's Bags</a></li>*@
+                    }
 
-                    <li><a asp-area="" asp-controller="Contact" asp-action="Index">Contact Us</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">Members</a></li>
