@@ -48,5 +48,12 @@ namespace WADAssignment1.Controllers
 			return Redirect(Request.Headers["Referer"].ToString());
 		}
 
+		public ActionResult Clear(int id)
+		{
+			var cart = ShoppingCart.GetCart(this.HttpContext);
+			cart.EmptyCart(_context);
+			return Redirect(Request.Headers["Referer"].ToString()); return Redirect(Request.Headers["Referer"].ToString());
+		}
+
 	}
 }

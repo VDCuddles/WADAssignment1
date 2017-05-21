@@ -34,7 +34,8 @@ namespace WADAssignment1.Controllers
 			ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
 			ViewData["CategoryNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "CategoryName" : "";
 			ViewData["PriceSortParm"] = sortOrder == "Price" ? "Price" : "Price";
-			ViewData["CurrentFilter"] = searchString;
+			ViewData["CurrentFilter"] = searchString;
+
 			var bags = from s in _context.Bags
 					   select s;
 
