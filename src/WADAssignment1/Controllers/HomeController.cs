@@ -15,7 +15,7 @@ namespace WADAssignment1.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Our Story";
 
             return View();
         }

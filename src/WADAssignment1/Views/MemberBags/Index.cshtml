@@ -35,7 +35,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-    var imgUrl = @Href("~" + item.Image);
+    var imgUrl = @Href("~/images/bags/" + item.Image);
     var errImg = @Href("~/images/bags/default.jpg");
         <tr>
             <td>
