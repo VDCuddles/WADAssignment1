@@ -26,8 +26,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    Quality
-                    Bags
+                    @*Quality
+                    Bags*@
+                    @*<img src ="~/images/logo5.png" alt="Quality Bags" >*@
+                    <img src='@Url.Content("~/images/logo5.png")' width="93" height="28" alt="logo5" />
+                    </img>
                 </a>
             </div>
             <div class="navbar-collapse collapse">
@@ -48,7 +51,7 @@
                     <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Women's Bags</a></li>
                     <li><a asp-area="" asp-controller="MemberBags" asp-action="Index">Children's Bags</a></li>}
 
-                    <li><a asp-area="" asp-controller="Contact_Us" asp-action="Index">Contact Us</a></li>
+                    <li><a asp-area="" asp-controller="Contact" asp-action="Index">Contact Us</a></li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">Members</a></li>
